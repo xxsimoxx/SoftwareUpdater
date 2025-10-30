@@ -67,6 +67,20 @@ if (array_key_exists('theme', $_REQUEST)) {
 }
 ```
 
+### `sanitize_callback` example
+
+For example, you can secure your updates by checking that they get the file from a trusted source.
+If you host your release in GitHub, the download URL will look like `https://github.com/user/plugin/releases/download/v1.2.3/plugin-v1.4.5.zip`.
+If someone changes this in your update server to `https://hacker.org/evil-plugin.zip` the callback will save your users from getting nasty software.
+This is a callback that prevent this:
+
+```php
+function my_example_callback( $update ) {
+	return str_starts_with( $update['package'], 'https://github.com/user/plugin' );
+}
+```
+
+
 ## Class options
 
 | parameter | description |
