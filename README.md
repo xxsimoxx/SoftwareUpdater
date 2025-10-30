@@ -20,16 +20,6 @@ In `https://your-update-server/update.txt` put some JSON data, like
 ```
 You are done. Just remember to update your JSON file when updating the plugin.
 
-## Class options
-
-| parameter | description |
-|--|--|
-| url | The url of the update endpoint. The host must matche the `Update URI` header.|
-| slug | The `folder/main_php_file.php` of a plugin or the `folder` of a theme. |
-| type | `plugin` or `theme`.
-| sanitize_callback | The function that is called with the update data response.  Used to validate the response.  Must return `false` if the response is not valid. |
-| extra_args |   Extra args passed to $url as an associative array. Can be used to log sites using the plugin or verify license code.
-
 ## Full setup
 1. In your plugin or theme, add:
 ```php
@@ -77,3 +67,19 @@ if (array_key_exists('theme', $_REQUEST)) {
 }
 ```
 
+## Class options
+
+| parameter | description |
+|--|--|
+| url | The url of the update endpoint. The host must matche the `Update URI` header.|
+| slug | The `folder/main_php_file.php` of a plugin or the `folder` of a theme. |
+| type | `plugin` or `theme`.
+| sanitize_callback | The function that is called with the update data response.  Used to validate the response.  Must return `false` if the response is not valid. |
+| extra_args |   Extra args passed to $url as an associative array. Can be used to log sites using the plugin or verify license code.
+
+`public function __construct( $url, $slug, $type = 'plugin', $sanitize_callback = null, $extra_args = array() )`
+
+## Supported response parameters
+
+- For plugins, the supported parameter are those for the `update_plugins_{$hostname}` hook, documented [here](https://docs.classicpress.net/reference/hooks/update_plugins_hostname/).
+- For themes, the supported parameter are those for the `update_themes_{$hostname}` hook, documented [here](https://docs.classicpress.net/reference/hooks/update_themes_hostname/).
