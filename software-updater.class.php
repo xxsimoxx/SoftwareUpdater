@@ -6,11 +6,13 @@ if (class_exists('SoftwareUpdater')) {
 
 class SoftwareUpdater {
 
-	private $url        = '',
-			$slug       = '',
-			$type       = '',
+	private $url               = '',
+			$slug              = '',
+			$type              = '',
 			$sanitize_callback = null,
-			$extra_args = [];
+			$extra_args        = [];
+
+	const   SEMVER             = '0.0.1';
 
 	/**
 	 * __construct function
